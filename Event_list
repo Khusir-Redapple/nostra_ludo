@@ -1,0 +1,25 @@
+Event List:
+
+Event Name: joinTournament
+Event data: userId, username, device_id ,no_of_players, room_fee, tournamentId
+
+Event Name: join_previous
+Data: Same 
+
+Event Name: leaveTable
+Data: Same 
+
+Event Name: tournamnt_dice_rolled
+Data: Same 
+
+Event Name: tournament_move_made
+Data: Same 
+
+Event Name: skip_turn
+Data: Same 
+
+Event Name: go_in_background
+Data: Same 
+
+Eventname : joinTournament
+Data: name, mobile_no, userId(unique for every user), no_of_players, room_fee, tournamentId

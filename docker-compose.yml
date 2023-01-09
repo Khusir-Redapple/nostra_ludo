@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mongo:
+      image: "mongo:5.0"   
+      environment:
+        MONGO_ROOT_PASSWORD: docker
+      ports:
+        - 27017:27017
+      volumes:
+        - .:/code 
+  api:
+    build: .    
+    depends_on:
+      - mongo  
+    restart: unless-stopped
