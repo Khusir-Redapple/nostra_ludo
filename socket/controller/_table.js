@@ -214,13 +214,21 @@ module.exports = {
         // console.log('Move Made', params);
         try {
             // VALIDATION
-            if (!params) return { callback: { status: 0, message: localization.missingParamError } };
-            if (!params.room) return { callback: { status: 0, message: localization.missingParamError } };
-            if (!params.token_index) return { callback: { status: 0, message: localization.missingParamError } };
-            if (!params.dice_value) return { callback: { status: 0, message: localization.missingParamError } };
-            if (parseInt(params.dice_value) > 6)
+            if (!params) {
+                 return { callback: { status: 0, message: localization.missingParamError } }; 
+
+            } else if (!params.room) {
                 return { callback: { status: 0, message: localization.missingParamError } };
 
+            } else if (!params.token_index) {
+                return { callback: { status: 0, message: localization.missingParamError } };
+
+            } else if (!params.dice_value) {
+                return { callback: { status: 0, message: localization.missingParamError } };
+
+            } else if (parseInt(params.dice_value) > 6) {
+                return { callback: { status: 0, message: localization.missingParamError } };
+            }                  
             params.token_index = parseInt(params.token_index);
             params.dice_value = parseInt(params.dice_value);
 
@@ -242,8 +250,8 @@ module.exports = {
             if (params.dice_value == 6) {
 
                 console.log("in the params dice value 0................");
-                await _tab.addBonus(params.room, id, 1,'six'); //remove this for not giving 2nd turn on 6
-                await _tab.addSix(params.room, id, 1);
+                _tab.addBonus(params.room, id, 1,'six'); //remove this for not giving 2nd turn on 6
+                _tab.addSix(params.room, id, 1);
             }
 
             // Check if move is possible
@@ -1352,14 +1360,14 @@ module.exports = {
     //Check Tabel Exists
     istableExists: async function (params) {
         // console.log('Check Tabel Exists Request >> ', params);
-        if (!params) {
+        if (!params && !params.room) {
             // console.log('missingParamError');
             return false;
         }
-        if (!params.room) {
-            // console.log('missingParamError');
-            return false;
-        }
+        // if (!params.room) {
+        //     console.log('missingParamError');
+        //     return false;
+        // }
 
         var tabelCheck = _tab.checkTableExists(params.room);
         // console.log('Table Exists', tabelCheck);

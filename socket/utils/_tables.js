@@ -125,20 +125,29 @@ class _Tables {
 
     //Check Table Exists
     checkTableExists(room) {
-        for (var i = 0; i < this.tables.length; i++) {
+        // for (var i = 0; i < this.tables.length; i++) {
+        //     if (this.tables[i].room == room) {
+        //         return {
+        //             status: true,
+        //             start_at: parseInt(this.tables[i].turn_start_at),
+        //             current_turn: this.tables[i].current_turn,
+        //         };
+        //     }
+        // }
+        
+        // New implementation
+        this.tables.map(function(element,i) {
             if (this.tables[i].room == room) {
-                let res = {
+                return {
                     status: true,
                     start_at: parseInt(this.tables[i].turn_start_at),
                     current_turn: this.tables[i].current_turn,
                 };
-                return res;
             }
-        }
-        let res = {
+        })
+        return {
             status: false,
         };
-        return res;
     }
 
      //Seat on tournament table
@@ -573,8 +582,7 @@ class _Tables {
                     }
                 }
             }
-        }
-        
+        }        
     }
     addBonusPoints(room, id, points, length, type) {
         let bonusPoint = points * length;
